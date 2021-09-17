@@ -3,6 +3,16 @@ server:
 spring:
   application:
     name: msa-app-catalog
+  config:
+    import: "optional:configserver:http://127.0.0.1:8888"
+  cloud:
+    config:
+      name: msa-app-catalog
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   h2:
     console:
       enabled: true
@@ -30,3 +40,9 @@ eureka:
 logging:
   level:
     com.example.msaappcatalog: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh, info, prometheus, metrics
